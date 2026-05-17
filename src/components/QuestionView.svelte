@@ -28,7 +28,7 @@
   let promptEl = $state<HTMLDivElement | undefined>(undefined);
 
   $effect(() => {
-    if (stimulusEl && question.stimulus) {
+    if (stimulusEl && question.stimulus && !isMathFigureOnly) {
       stimulusEl.innerHTML = sanitize(question.stimulus);
       renderMathIn(stimulusEl);
     }
@@ -51,7 +51,7 @@
 </script>
 
 <div class="qv" class:split={!!question.stimulus && question.section === 'rw'}>
-  {#if question.stimulus}
+  {#if question.stimulus && !isMathFigureOnly}
     <div class="stimulus" bind:this={stimulusEl}></div>
   {/if}
 
