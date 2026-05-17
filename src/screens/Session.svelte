@@ -166,4 +166,14 @@
   .bottombar .left { display: flex; gap: 0.5rem; }
   .bottombar .right { margin-left: auto; display: flex; gap: 0.5rem; }
   .primary { background: #1a73e8; color: white; border: 0; padding: 0.5rem 1rem; border-radius: 4px; }
+
+  @media (max-width: 768px) {
+    .topbar { flex-wrap: wrap; gap: 0.5rem; padding: 0.5rem; font-size: 0.9rem; }
+    .section { flex-basis: 100%; }
+    .qarea { margin: 0.5rem; padding: 0.75rem; border-radius: 6px; }
+    .qhead { flex-wrap: wrap; gap: 0.5rem; font-size: 0.95rem; }
+    .bottombar { flex-wrap: wrap; padding: 0.5rem; gap: 0.4rem; }
+    .bottombar .left, .bottombar .right { flex: 1 1 auto; }
+    .bottombar button { padding: 0.5rem 0.6rem; }
+  }
 </style>

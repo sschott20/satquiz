@@ -107,4 +107,10 @@
   .primary:disabled { opacity: 0.5; }
   .ghost { background: transparent; border: 1px solid #ccc; padding: 0.6rem 1rem; border-radius: 4px; }
   .warning { color: #b32400; }
+
+  @media (max-width: 768px) {
+    .setup { margin: 0.5rem; padding: 1rem; border-radius: 6px; }
+    .actions { flex-direction: column; }
+    .actions button { width: 100%; }
+  }
 </style>

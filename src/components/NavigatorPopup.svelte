@@ -36,7 +36,8 @@
 <style>
   .backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.2); }
   .popup { position: fixed; top: 4rem; left: 50%; transform: translateX(-50%);
-    background: white; padding: 1rem; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); min-width: 20rem; }
+    background: white; padding: 1rem; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); min-width: 20rem;
+    max-height: 80vh; overflow-y: auto; }
   .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.4rem; margin: 0.5rem 0; }
   .grid button { padding: 0.5rem; border: 1px solid #ccc; background: white; border-radius: 4px; }
   .grid .answered { background: #e8f0fe; border-color: #1a73e8; }
@@ -44,4 +45,9 @@
   .grid .flagged { background: #fff59d; border-color: #f9a825; }
   .grid .current { outline: 2px solid #1a73e8; }
   .close { margin-top: 0.5rem; }
+
+  @media (max-width: 768px) {
+    .popup { top: 2rem; left: 0.5rem; right: 0.5rem; transform: none; min-width: 0; padding: 0.75rem; }
+    .grid { grid-template-columns: repeat(4, 1fr); }
+  }
 </style>

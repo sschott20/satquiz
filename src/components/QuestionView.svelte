@@ -91,4 +91,11 @@
   .stimulus, .prompt { line-height: 1.6; }
   .figure { max-width: 100%; height: auto; margin: 0.5rem 0; }
   .figure.full { max-width: 100%; max-height: 70vh; object-fit: contain; }
+
+  @media (max-width: 768px) {
+    .qv.split { grid-template-columns: 1fr; }
+    .stimulus { max-height: 40vh; overflow-y: auto;
+      padding: 0.5rem; border: 1px solid #eee; border-radius: 4px; background: #fafafa; }
+    .figure.full { max-height: 55vh; }
+  }
 </style>

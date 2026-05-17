@@ -125,4 +125,13 @@
   .explain { padding: 0.5rem 0; }
   .no-explain { color: #888; padding: 0.5rem 0; }
   .caret { width: 1.5rem; color: #888; user-select: none; }
+
+  @media (max-width: 768px) {
+    .review { margin: 0.5rem; padding: 0.75rem; border-radius: 6px; }
+    table { font-size: 0.85rem; }
+    th, td { padding: 0.35rem 0.3rem; }
+    .caret { width: 1rem; }
+    /* Drop the "Flag" column on phones to save horizontal space. */
+    th:nth-child(3), td:nth-child(3) { display: none; }
+  }
 </style>

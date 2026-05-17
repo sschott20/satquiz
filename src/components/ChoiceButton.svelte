@@ -34,8 +34,14 @@
     border: 1px solid #ddd; border-radius: 4px; margin: 0.25rem 0; }
   .row.selected { border-color: #1a73e8; background: #e8f0fe; }
   .row.crossed .body { text-decoration: line-through; color: #888; }
-  .letter { width: 2rem; height: 2rem; border-radius: 50%; border: 1px solid #888; background: white; }
+  .letter { width: 2rem; height: 2rem; border-radius: 50%; border: 1px solid #888; background: white; flex-shrink: 0; }
   .row.selected .letter { background: #1a73e8; color: white; border-color: #1a73e8; }
-  .body { flex: 1; }
+  .body { flex: 1; min-width: 0; }
   .cross { font-size: 0.85rem; background: transparent; border: 1px solid #ccc; padding: 0.25rem 0.5rem; border-radius: 4px; }
+
+  @media (max-width: 768px) {
+    .row { gap: 0.5rem; padding: 0.6rem 0.5rem; }
+    .letter { width: 2.25rem; height: 2.25rem; }
+    .cross { font-size: 0.75rem; padding: 0.25rem 0.4rem; }
+  }
 </style>

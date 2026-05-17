@@ -36,8 +36,12 @@
 <style>
   .panel { position: fixed; bottom: 4rem; right: 2rem; width: 32rem; height: 24rem;
     background: white; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    display: flex; flex-direction: column; }
+    display: flex; flex-direction: column; z-index: 10; }
   header { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 1rem; border-bottom: 1px solid #eee; }
   .graph { flex: 1; }
   .err { padding: 1rem; color: #b32400; }
+
+  @media (max-width: 768px) {
+    .panel { bottom: 0.5rem; right: 0.5rem; left: 0.5rem; width: auto; height: 60vh; }
+  }
 </style>
