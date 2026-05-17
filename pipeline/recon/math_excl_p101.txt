@@ -1,0 +1,34 @@
+Question ID: 80da233d
+Assessment
+Test
+Domain
+Skill
+Difficulty
+SAT
+Math
+Algebra
+Linear inequalities in one
+or two variables
+Medium
+Question
+A cer tain elephant weighs 200 pounds at bir th and gains more than 2 but less than 3 pounds per day during its first year. Which of the following
+inequalities represents all possible weights w, in pounds, for the elephant 365 days after bir th?
+Answer
+A. 
+B. 
+C. 
+D. 
+Correct Answer: D
+Rationale
+Choice D is correct. It’s given that the elephant weighs 200 pounds at bir th and gains more than 2 pounds but less than 3 pounds per day during
+its first year. The inequality 
+ represents this situation, where d is the number of days after bir th. Substituting 365
+for d in the inequality gives 
+, or 
+.
+Choice A is incorrect and may result from solving the inequality 
+. Choice B is incorrect and may result from solving the
+inequality for a weight range of more than 1 pound but less than 2 pounds: 
+. Choice C is incorrect and
+may result from calculating the possible weight gained by the elephant during the first year without adding the 200 pounds the elephant weighed
+at bir th.

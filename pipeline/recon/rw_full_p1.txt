@@ -1,0 +1,34 @@
+Question ID: e62241b7
+Assessment
+Test
+Domain
+Skill
+Difficulty
+SAT
+Reading and Writing
+Standard English
+Conventions
+Form, Structure, and
+Sense
+Easy
+Question
+What is the correct pronunciation of Kiribati? In the Gilber tese language spoken by residents of the island nation, the letter combination -ti makes
+the -s sound; as a result, the country’s name ______ pronounced “Kiribas.
+”
+Which choice completes the text so that it conforms to the conventions of Standard English?
+Answer
+A. are
+B. have been
+C. are being
+D. is
+Correct Answer: D
+Rationale
+Choice D is the best answer. The convention being tested is subject-verb agreement. The singular verb "is" agrees in number with the singular
+subject "the country’s name.
+"
+Choice A is incorrect because the plural verb "are" doesn’t agree in number with the singular subject "the country’s name.
+" Choice B is incorrect
+because the plural verb "have been" doesn’t agree in number with the singular subject "the country’s name.
+" Choice C is incorrect because the
+plural verb "are being" doesn’t agree in number with the singular subject "the country’s name.
+"

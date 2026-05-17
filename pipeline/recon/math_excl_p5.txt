@@ -1,0 +1,27 @@
+Question ID: d1b66ae6
+Assessment
+Test
+Domain
+Skill
+Difficulty
+SAT
+Math
+Algebra
+Systems of two linear
+equations in two
+variables
+Hard
+Question
+If 
+ satisfies the system of equations above, what is the value of y ?
+Rationale
+The correct answer is 
+. One method for solving the system of equations for y is to add corresponding sides of the two equations. Adding the
+left-hand sides gives 
+, or 4y. Adding the right-hand sides yields 
+. It follows that 
+. Finally, dividing
+both sides of 
+ by 4 yields 
+ or 
+. Note that 3/2 and 1.5 are examples of ways to enter a correct answer.

@@ -1,0 +1,472 @@
+[
+  {
+    "type": 0,
+    "bbox": [
+      18.0,
+      22.7,
+      151.5,
+      34.7
+    ],
+    "text": "Question ID: f224df07"
+  },
+  {
+    "type": 0,
+    "bbox": [
+      24.8,
+      58.4,
+      521.0,
+      67.2
+    ],
+    "text": "Assessment Test Domain Skill Difficulty"
+  },
+  {
+    "type": 0,
+    "bbox": [
+      24.8,
+      83.9,
+      468.9,
+      92.7
+    ],
+    "text": "SAT Math Algebra Linear inequalities in one"
+  },
+  {
+    "type": 0,
+    "bbox": [
+      369.8,
+      95.2,
+      433.2,
+      103.9
+    ],
+    "text": "or two variables"
+  },
+  {
+    "type": 0,
+    "bbox": [
+      484.7,
+      83.9,
+      517.4,
+      92.7
+    ],
+    "text": "Medium"
+  },
+  {
+    "type": 0,
+    "bbox": [
+      18.0,
+      129.0,
+      54.2,
+      136.9
+    ],
+    "text": "Question"
+  },
+  {
+    "type": 0,
+    "bbox": [
+      18.0,
+      143.2,
+      566.2,
+      151.9
+    ],
+    "text": "A cargo helicopter delivers only 100-pound packages and 120-pound packages. For each delivery trip, the helicopter must carry at least 10"
+  },
+  {
+    "type": 0,
+    "bbox": [
+      18.0,
+      158.2,
+      576.9,
+      166.9
+    ],
+    "text": "packages, and the total weight of the packages can be at most 1,100 pounds. What is the maximum number of 120-pound packages that the"
+  },
+  {
+    "type": 0,
+    "bbox": [
+      18.0,
+      172.4,
+      131.5,
+      181.2
+    ],
+    "text": "helicopter can carry per trip?"
+  },
+  {
+    "type": 0,
+    "bbox": [
+      18.0,
+      198.8,
+      48.3,
+      206.6
+    ],
+    "text": "Answer"
+  },
+  {
+    "type": 0,
+    "bbox": [
+      18.0,
+      212.9,
+      33.6,
+      221.7
+    ],
+    "text": "A. 2"
+  },
+  {
+    "type": 0,
+    "bbox": [
+      18.3,
+      236.2,
+      33.6,
+      244.9
+    ],
+    "text": "B. 4"
+  },
+  {
+    "type": 0,
+    "bbox": [
+      18.1,
+      260.2,
+      33.6,
+      268.9
+    ],
+    "text": "C. 5"
+  },
+  {
+    "type": 0,
+    "bbox": [
+      18.5,
+      283.4,
+      33.6,
+      292.2
+    ],
+    "text": "D. 6"
+  },
+  {
+    "type": 0,
+    "bbox": [
+      18.0,
+      321.8,
+      91.2,
+      329.6
+    ],
+    "text": "Correct Answer: C"
+  },
+  {
+    "type": 0,
+    "bbox": [
+      18.0,
+      350.2,
+      56.1,
+      358.1
+    ],
+    "text": "Rationale"
+  },
+  {
+    "type": 0,
+    "bbox": [
+      18.0,
+      365.2,
+      584.3,
+      373.9
+    ],
+    "text": "Choice C is correct. Let a equal the number of 120-pound packages, and let b equal the number of 100-pound packages. It \u2019 s given that the total"
+  },
+  {
+    "type": 0,
+    "bbox": [
+      18.0,
+      379.4,
+      288.5,
+      388.2
+    ],
+    "text": "weight of the packages can be at most 1,100 pounds: the inequality "
+  },
+  {
+    "type": 1,
+    "bbox": [
+      288.8,
+      378.0,
+      397.5,
+      394.5
+    ],
+    "width": 145,
+    "height": 22
+  },
+  {
+    "type": 0,
+    "bbox": [
+      397.3,
+      379.4,
+      587.1,
+      388.2
+    ],
+    "text": " represents this situation. It \u2019 s also given that the"
+  },
+  {
+    "type": 0,
+    "bbox": [
+      18.0,
+      397.4,
+      247.2,
+      406.2
+    ],
+    "text": "helicopter must carry at least 10 packages: the inequality "
+  },
+  {
+    "type": 1,
+    "bbox": [
+      247.5,
+      396.0,
+      299.2,
+      412.5
+    ],
+    "width": 69,
+    "height": 22
+  },
+  {
+    "type": 0,
+    "bbox": [
+      299.0,
+      397.4,
+      559.3,
+      406.2
+    ],
+    "text": " represents this situation. Values of a and b that satisfy these two"
+  },
+  {
+    "type": 0,
+    "bbox": [
+      18.0,
+      415.4,
+      578.2,
+      424.2
+    ],
+    "text": "inequalities represent the allowable numbers of 120-pound packages and 100-pound packages the helicopter can transpor t. To maximize the"
+  },
+  {
+    "type": 0,
+    "bbox": [
+      18.0,
+      429.7,
+      592.0,
+      438.4
+    ],
+    "text": "number of 120-pound packages, a, in the helicopter, the number of 100-pound packages, b, in the helicopter needs to be minimized. Expressing b"
+  },
+  {
+    "type": 0,
+    "bbox": [
+      18.0,
+      443.9,
+      192.1,
+      452.7
+    ],
+    "text": "in terms of a in the second inequality yields "
+  },
+  {
+    "type": 1,
+    "bbox": [
+      192.0,
+      442.5,
+      243.8,
+      459.0
+    ],
+    "width": 69,
+    "height": 22
+  },
+  {
+    "type": 0,
+    "bbox": [
+      243.9,
+      443.9,
+      399.3,
+      452.7
+    ],
+    "text": ", so the minimum value of b is equal to "
+  },
+  {
+    "type": 1,
+    "bbox": [
+      399.0,
+      442.5,
+      431.2,
+      459.0
+    ],
+    "width": 43,
+    "height": 22
+  },
+  {
+    "type": 0,
+    "bbox": [
+      431.6,
+      443.9,
+      486.5,
+      452.7
+    ],
+    "text": ". Substituting "
+  },
+  {
+    "type": 1,
+    "bbox": [
+      486.8,
+      442.5,
+      519.0,
+      459.0
+    ],
+    "width": 43,
+    "height": 22
+  },
+  {
+    "type": 0,
+    "bbox": [
+      518.8,
+      443.9,
+      581.9,
+      452.7
+    ],
+    "text": " for b in the first"
+  },
+  {
+    "type": 0,
+    "bbox": [
+      18.0,
+      461.9,
+      97.3,
+      470.7
+    ],
+    "text": "inequality results in "
+  },
+  {
+    "type": 1,
+    "bbox": [
+      97.5,
+      459.0,
+      238.5,
+      478.5
+    ],
+    "width": 188,
+    "height": 26
+  },
+  {
+    "type": 0,
+    "bbox": [
+      238.3,
+      461.9,
+      485.2,
+      470.7
+    ],
+    "text": ". Using the distributive proper ty to rewrite this inequality yields"
+  },
+  {
+    "type": 1,
+    "bbox": [
+      18.0,
+      480.0,
+      168.0,
+      496.5
+    ],
+    "width": 200,
+    "height": 22
+  },
+  {
+    "type": 0,
+    "bbox": [
+      168.0,
+      481.4,
+      182.4,
+      490.2
+    ],
+    "text": ", or "
+  },
+  {
+    "type": 1,
+    "bbox": [
+      182.2,
+      480.0,
+      286.5,
+      496.5
+    ],
+    "width": 139,
+    "height": 22
+  },
+  {
+    "type": 0,
+    "bbox": [
+      286.6,
+      481.4,
+      522.0,
+      490.2
+    ],
+    "text": ". Subtracting 1,000 from both sides of this inequality yields "
+  },
+  {
+    "type": 1,
+    "bbox": [
+      522.0,
+      480.0,
+      575.2,
+      496.5
+    ],
+    "width": 71,
+    "height": 22
+  },
+  {
+    "type": 0,
+    "bbox": [
+      575.2,
+      481.4,
+      577.6,
+      490.2
+    ],
+    "text": "."
+  },
+  {
+    "type": 0,
+    "bbox": [
+      18.0,
+      499.4,
+      226.4,
+      508.2
+    ],
+    "text": "Dividing both sides of this inequality by 20 results in "
+  },
+  {
+    "type": 1,
+    "bbox": [
+      226.5,
+      498.0,
+      252.8,
+      514.5
+    ],
+    "width": 35,
+    "height": 22
+  },
+  {
+    "type": 0,
+    "bbox": [
+      252.6,
+      499.4,
+      582.6,
+      508.2
+    ],
+    "text": ". This means that the maximum number of 120-pound packages that the helicopter"
+  },
+  {
+    "type": 0,
+    "bbox": [
+      18.0,
+      517.4,
+      104.0,
+      526.2
+    ],
+    "text": "can carry per trip is 5."
+  },
+  {
+    "type": 0,
+    "bbox": [
+      18.0,
+      543.7,
+      456.5,
+      552.4
+    ],
+    "text": "Choices A, B, and D are incorrect and may result from incorrectly creating or solving the system of inequalities."
+  }
+]

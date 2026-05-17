@@ -1,0 +1,57 @@
+Question ID: 6fa1dc0f
+Assessment
+Test
+Domain
+Skill
+Difficulty
+SAT
+Math
+Algebra
+Linear equations in two
+variables
+Easy
+Question
+Line 
+ in the xy-plane has a slope of 
+ and passes through the point 
+. Which equation defines line 
+?
+Answer
+A. 
+B. 
+C. 
+D. 
+Correct Answer: D
+Rationale
+Choice D is correct. A line in the xy-plane with a slope of 
+ and a y-intercept of 
+ can be defined by an equation in the form 
+.
+It’s given that line 
+ has a slope of 
+ and passes through the point 
+. It follows that 
+ and 
+. Substituting 
+ for 
+ and 
+ for 
+ in the
+equation 
+ yields 
+. Therefore, the equation 
+ defines line 
+.
+Choice A is incorrect. This equation defines a line that has a slope of 
+, not 
+, and passes through the point 
+, not 
+.
+Choice B is incorrect. This equation defines a line that has a slope of 
+, not 
+, and passes through the point 
+, not 
+.
+Choice C is incorrect. This equation defines a line that passes through the point 
+, not 
+.

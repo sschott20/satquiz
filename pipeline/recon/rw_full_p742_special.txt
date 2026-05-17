@@ -1,0 +1,14 @@
+C. Only around half the municipalities that responded to inquiries mentioning plans for an announcement before the next election offered
+incentives. 
+D. Of the municipalities that received an inquiry mentioning plans for an announcement date after the next election, more than 1,200 didn’t
+respond and only around 100 offered incentives.
+Correct Answer: B
+Rationale
+Choice B is the best answer. The lighter bars show what happened when the announcement was to come before the election, and the darker bars
+show what happened when the announcement was to come after the election. For all three of the outcomes, the light and dark bars are vir tually
+the same, demonstrating that the announcement timing didn’t actually make a difference.
+Choice A is incorrect. This accurately describes some data from the graph, but it doesn’t weaken the hypothesis. It doesn’t include the
+“announcement after election” data for comparison. Choice C is incorrect. This accurately describes some data from the graph, but it doesn’t
+weaken the hypothesis. It doesn’t include the “announcement after election” data for comparison. Choice D is incorrect. This accurately
+describes some data from the graph, but it doesn’t weaken the hypothesis. It doesn’t include the “announcement before election” data for
+comparison.

@@ -1,0 +1,32 @@
+Question ID: 5c00c2c1
+Assessment
+Test
+Domain
+Skill
+Difficulty
+SAT
+Math
+Advanced Math
+Nonlinear functions
+Medium
+Question
+There were no jackrabbits in Australia before 1788 when 24 jackrabbits were introduced. By 1920 the population of jackrabbits had reached 10
+billion. If the population had grown exponentially, this would correspond to a 16.2% increase, on average, in the population each year. Which of
+the following functions best models the population 
+ of jackrabbits t years after 1788?
+Answer
+A. 
+B. 
+C. 
+D. 
+Correct Answer: C
+Rationale
+Choice C is correct. This exponential growth model can be written in the form 
+, where 
+ is the population t years after
+1788, A is the initial population, and r is the yearly growth rate, expressed as a decimal. Since there were 24 jackrabbits in Australia in 1788,
+. Since the number of jackrabbits increased by an average of 16.2% each year, 
+. Therefore, the equation that best models
+this situation is 
+.
+Choices A, B, and D are incorrect and may result from misinterpreting the form of an exponential growth model.

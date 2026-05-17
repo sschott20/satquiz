@@ -1,0 +1,34 @@
+Question ID: 1684b237
+Assessment
+Test
+Domain
+Skill
+Difficulty
+SAT
+Reading and Writing
+Standard English
+Conventions
+Form, Structure, and
+Sense
+Easy
+Question
+One of the few African American global explorers during the turn of the 20th century, ______
+Which choice completes the text so that it conforms to the conventions of Standard English?
+Answer
+A. Matthew Henson made several treks across Greenland between 1891 and 1909.
+B. 1891 and 1909 were the years between which Matthew Henson made several treks across Greenland.
+C. Greenland was where Matthew Henson made several treks between 1891 and 1909.
+D. several treks across Greenland were made by Matthew Henson between 1891 and 1909.
+Correct Answer: A
+Rationale
+Choice A is the best answer. The convention being tested is subject-modifier placement. This choice makes the proper noun "Matthew Henson"
+the subject of the sentence and places it immediately after the modifying phrase "one…century.
+" In doing so, this choice clearly establishes that
+Matthew Henson—and not another noun in the sentence—is being described as one of the few African American global explorers during the turn
+of the 20th century.
+Choice B is incorrect because it results in a dangling modifier. The placement of the noun phrase "1891 and 1909" immediately after the
+modifying phrase illogically suggests that those years were one of the few African American global explorers during the turn of the 20th century.
+Choice C is incorrect because it results in a dangling modifier. The placement of the proper noun "Greenland" immediately after the modifying
+phrase illogically suggests that Greenland was one of the few African American global explorers during the turn of the 20th century. Choice D is
+incorrect because it results in a dangling modifier. The placement of the noun phrase "several treks across Greenland" immediately after the
+modifying phrase illogically suggests that the treks were one of the few African American global explorers during the turn of the 20th century.

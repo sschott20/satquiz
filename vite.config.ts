@@ -6,6 +6,9 @@ const base = process.env.BASE ?? '/';
 export default defineConfig({
   base,
   plugins: [svelte()],
+  resolve: {
+    conditions: process.env.VITEST ? ['browser'] : [],
+  },
   test: {
     environment: 'jsdom',
     globals: true,

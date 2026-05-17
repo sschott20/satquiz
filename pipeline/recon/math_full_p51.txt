@@ -1,0 +1,61 @@
+Question ID: 01682aa5
+Assessment
+Test
+Domain
+Skill
+Difficulty
+SAT
+Math
+Algebra
+Linear equations in two
+variables
+Medium
+Question
+Line 
+ is defined by 
+. Line 
+ is perpendicular to line 
+ in the xy-plane. What is the slope of line 
+?
+Answer
+A. 
+B. 
+C. 
+D. 
+Correct Answer: C
+Rationale
+Choice C is correct. It’s given that line 
+ is perpendicular to line 
+ in the xy-plane. This means that the slope of line 
+ is the negative reciprocal of
+the slope of line 
+. If the equation for line 
+ is rewritten in slope-intercept form 
+, where 
+ and 
+ are constants, then 
+ is the slope
+of the line and 
+ is its y-intercept. Subtracting 
+ from both sides of the equation 
+ yields 
+. Dividing both
+sides of this equation by 
+ yields 
+. It follows that the slope of line 
+ is 
+. The negative reciprocal of a number is 
+ divided by
+the number. Therefore, the negative reciprocal of 
+ is 
+, or 
+. Thus, the slope of line 
+ is 
+.
+Choice A is incorrect. This is the slope of line 
+, not line 
+.
+Choice B is incorrect. This is the reciprocal, not the negative reciprocal, of the slope of line 
+.
+Choice D is incorrect. This is the negative, not the negative reciprocal, of the slope of line 
+.
