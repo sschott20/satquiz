@@ -98,10 +98,14 @@ After running on 2026-05-17 data:
 | Questions total | 3,444 |
 | Math | 1,756 |
 | R&W | 1,688 |
-| Active | 2,022 |
-| Inactive | 1,422 |
-| MCQ | 3,011 |
-| SPR | 433 |
+| Active (math) | 930 |
+| Inactive (math) | 826 |
+| Active (R&W) | 1,092 |
+| Inactive (R&W) | 596 |
+| MCQ | 3,022 |
+| SPR | 422 |
 | With figure | 1,756 (= every math question) |
+| SPR with `acceptedAnswers` populated | 420 / 422 |
+| R&W with structured stimulus | 1,681 / 1,688 |
 
 See `RECON.md` for breakdown by domain and a deeper writeup of PDF structure, parsing decisions, and known failure modes.

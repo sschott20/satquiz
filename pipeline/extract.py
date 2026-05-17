@@ -309,32 +309,30 @@ def find_anchors(q: RawQuestion) -> dict[str, Anchor]:
 CHOICE_RE = re.compile(r"^([A-D])\.\s*(.*)$", re.DOTALL)
 
 
-def extract_choices(q: RawQuestion, ans_anchor: Anchor, ca_anchor: Anchor) -> tuple[list[str], list[Block]]:
+def extract_choices(q: RawQuestion, ans_anchor: Anchor, end_anchor: Optional[Anchor]) -> tuple[list[str], list[Block]]:
     """Pull the four choice texts (or empty list if SPR).
 
-    ans_anchor and ca_anchor delimit the region containing A./B./C./D.
+    ans_anchor and end_anchor delimit the region containing A./B./C./D. end_anchor is
+    typically the "Correct Answer:" line; if absent, we use the "Rationale" anchor; if
+    that's also absent, we read to the end of the question.
     """
     choice_blocks: dict[str, list[Block]] = {"A": [], "B": [], "C": [], "D": []}
-    # Walk blocks in (page, y) order between the two anchors.
     current_letter: Optional[str] = None
     for b in q.blocks:
         if (b.page_idx, b.y0) <= (ans_anchor.page_idx, ans_anchor.y):
             continue
-        if (b.page_idx, b.y0) >= (ca_anchor.page_idx, ca_anchor.y):
+        if end_anchor is not None and (b.page_idx, b.y0) >= (end_anchor.page_idx, end_anchor.y):
             break
         first_line = b.text.lstrip().split("\n", 1)[0].rstrip()
         m = CHOICE_RE.match(first_line)
         if m:
             current_letter = m.group(1)
-            # Rewrite block.text to drop the "X. " prefix
             stripped_text = b.text.split(".", 1)[1].lstrip() if "." in b.text else ""
-            # Keep all of block (because subsequent lines belong to the same choice)
             new_block = Block(b.page_idx, b.x0, b.y0, b.x1, b.y1, stripped_text)
             choice_blocks[current_letter].append(new_block)
         else:
             if current_letter is not None:
                 choice_blocks[current_letter].append(b)
-            # Else: stray block before any choice; ignore
     choices: list[str] = []
     for letter in "ABCD":
         if not choice_blocks[letter]:
@@ -524,23 +522,23 @@ def build_paired_stimulus_html(blocks: list[Block]) -> tuple[str, str]:
 
 def render_figure(doc: pymupdf.Document, q: RawQuestion, anchors: dict[str, Anchor], out_path: pathlib.Path):
     """Render the visible region of the question card from just below the metadata row to
-    the line above "Correct Answer:". Saves a PNG to out_path."""
-    # Determine y range on first page:
-    # top = y of "Question" header (anchor.y) - 4
-    # bottom on the same/last page = y of "Correct Answer:" anchor - 4
+    the line above "Correct Answer:" (preferred) or "Rationale" (fallback). Saves a PNG to
+    out_path."""
     q_anchor = anchors.get("question")
     ca_anchor = anchors.get("correct_answer")
+    rat_anchor = anchors.get("rationale")
     if q_anchor is None:
-        # Cannot render
         return False
     top_page = q_anchor.page_idx
     top_y = max(0, q_anchor.y - 4)
-    if ca_anchor is None:
+    # Use the earliest available end anchor: Correct Answer if present, else Rationale.
+    end_anchor = ca_anchor or rat_anchor
+    if end_anchor is None:
         bottom_page = q.end_page
         bottom_y = doc[bottom_page].rect.height
     else:
-        bottom_page = ca_anchor.page_idx
-        bottom_y = ca_anchor.y - 4
+        bottom_page = end_anchor.page_idx
+        bottom_y = end_anchor.y - 4
 
     # Render each page in range, cropping to the region
     page_pixmaps = []
@@ -642,8 +640,11 @@ def parse_question(doc: pymupdf.Document, q: RawQuestion, render_figures: bool) 
     ca_anchor = anchors.get("correct_answer")
     rat_anchor = anchors.get("rationale")
 
-    # ---- body: between "Question" and ("Answer" if MCQ else "Correct Answer:")
-    body_end_anchor = ans_anchor or ca_anchor
+    # ---- body: between "Question" header and the next downstream anchor (Answer for MCQ,
+    # Correct Answer: for SPR, or Rationale for old-format questions that lack a Correct
+    # Answer line). Without a downstream anchor the rationale would get lumped into the
+    # prompt.
+    body_end_anchor = ans_anchor or ca_anchor or rat_anchor
     body_blocks = slice_blocks(q, q_anchor, body_end_anchor)
 
     # Drop any blocks that ARE the Text 1 / Text 2 lone-anchor markers? We'll handle paired below.
@@ -671,17 +672,55 @@ def parse_question(doc: pymupdf.Document, q: RawQuestion, render_figures: bool) 
     else:
         ca_text = ""
 
-    if is_mcq and ca_anchor is not None:
-        choices_text, _ = extract_choices(q, ans_anchor, ca_anchor)
+    if is_mcq:
+        # Choices live between the "Answer" header and the next downstream anchor.
+        choice_end = ca_anchor or rat_anchor
+        choices_text, _ = extract_choices(q, ans_anchor, choice_end)
         if choices_text and ca_text in {"A", "B", "C", "D"}:
             correct_choice = ca_text
+        elif choices_text and rat_anchor is not None and not correct_choice:
+            # Old-format MCQs (e.g. with no "Correct Answer:" line) — mine "Choice X is
+            # correct" from the rationale.
+            rat_blocks = slice_blocks(q, rat_anchor, None)
+            rat_text = body_text_from_blocks(rat_blocks)
+            m = re.search(r"\bChoice\s+([A-D])\s+is\s+(?:the\s+(?:best|correct)\s+answer|correct)\b", rat_text)
+            if m:
+                correct_choice = m.group(1)
 
     if not is_mcq or not choices_text:
-        # SPR: parse comma-separated accepted answers
+        # SPR: parse comma-separated accepted answers from the "Correct Answer:" line.
         if ca_text:
             accepted_answers = [s.strip() for s in re.split(r"[,;]", ca_text) if s.strip()]
         is_mcq = False
         choices_text = []
+
+    # ---- Fallback: for old-format math SPRs that lack a "Correct Answer:" line, mine the
+    # answer from the rationale.
+    if not is_mcq and accepted_answers is None and rat_anchor is not None:
+        rat_blocks = slice_blocks(q, rat_anchor, None)
+        rat_text = body_text_from_blocks(rat_blocks)
+        # Pattern 1: "The correct answer is <NUMBER>." — works when answer is plain text.
+        m = re.search(
+            r"The correct answer is\s+(-?\d+(?:\.\d+)?(?:/\d+(?:\.\d+)?)?|\.\d+|-?\d+/\d+)",
+            rat_text,
+        )
+        if m:
+            accepted_answers = [m.group(1).strip()]
+        else:
+            # Pattern 2: "Note that 5/2 and 2.5 are examples of ways to enter a correct
+            # answer." — common closing line of older SPR rationales when the canonical
+            # answer is rendered as a math image. Collect the numbers/fractions listed.
+            mm = re.search(
+                r"Note that\s+(.+?)\s+are examples of ways to enter a correct answer",
+                rat_text, re.IGNORECASE,
+            )
+            if mm:
+                tokens = re.findall(
+                    r"-?\d+(?:\.\d+)?(?:/\d+(?:\.\d+)?)?|\.\d+",
+                    mm.group(1),
+                )
+                if tokens:
+                    accepted_answers = tokens
 
     # ---- explanation
     explanation_html = ""

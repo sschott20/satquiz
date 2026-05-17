@@ -66,8 +66,9 @@ Geometric and statistical figures (xy-planes, geometry diagrams, scatterplots, t
 
 - **Math LaTeX is not extracted**: equations are images in the figure PNG, not LaTeX in HTML. Acceptable per spec; React app must render figure alongside any text.
 - **Inline math gaps**: text fields like `prompt`, `choices`, `explanation` have whitespace gaps where math used to be. Searchable, but not a fluent read for math-heavy items.
-- **A few cards have unusual layouts** (e.g. data tables in math). We render their region as figure; text may be sparse.
-- **Choice prefix wrap** (rare in R&W; one case observed): when the text of a choice wraps in a way that the `A.`/`B.`/`C.`/`D.` prefix lands on its own line in plain text. We mitigate by parsing on PDF block boundaries (each block carries `y` position), so we associate the unprefixed continuation lines with the preceding choice.
+- **Old-format math items (~81 of 1,756)** have no separate "Correct Answer:" line; the answer lives in the first sentence of the rationale ("The correct answer is X."). We mine those. Where the answer itself is a math image (e.g. a fraction), we fall back to "Note that X and Y are examples of ways to enter a correct answer." Two remaining SPR questions (`e9c220b0aa8b6325`, `966f3c2512f7e3dc`) have no plain-text answer anywhere — the answer is purely image-based — so `acceptedAnswers` is omitted. The figure shows the canonical answer.
+- **Seven R&W items have no separable stimulus**: their stimulus and prompt were rendered as a single unbroken paragraph and our interrogative-prefix splitter could not find a boundary. The full text is preserved in `prompt`.
+- **Choice prefix wrap** in plain-text extraction is handled by parsing on PDF block boundaries (each block carries `y` position).
 
 ## Approach
 
