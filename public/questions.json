@@ -13,7 +13,7 @@
       "type": "mcq",
       "choices": ["<span class=\"math\">2</span>", "<span class=\"math\">3</span>", "<span class=\"math\">4</span>", "<span class=\"math\">6</span>"],
       "correctChoice": "C",
-      "explanation": "<p>Subtract 6 from both sides to get <span class=\"math\">3x = 12</span>, then divide by 3.</p>"
+      "explanation": "<p>Subtract 6 from both sides to get <span class=\"math\">3x = 12</span>, then divide by 3 to get <span class=\"math\">x = 4</span>.</p>"
     },
     {
       "id": "fix-math-mcq-m-1",
@@ -25,7 +25,8 @@
       "prompt": "<p>What are the solutions to <span class=\"math\">x^2 - 5x + 6 = 0</span>?</p>",
       "type": "mcq",
       "choices": ["<span class=\"math\">x = 1, 6</span>", "<span class=\"math\">x = 2, 3</span>", "<span class=\"math\">x = -2, -3</span>", "<span class=\"math\">x = 6</span>"],
-      "correctChoice": "B"
+      "correctChoice": "B",
+      "explanation": "<p>Factor as <span class=\"math\">(x - 2)(x - 3) = 0</span>, so <span class=\"math\">x = 2</span> or <span class=\"math\">x = 3</span>.</p>"
     },
     {
       "id": "fix-math-spr-h-1",
@@ -36,7 +37,8 @@
       "isActive": false,
       "prompt": "<p>If <span class=\"math\">2x + 4 = 10</span>, what is the value of <span class=\"math\">x</span>?</p>",
       "type": "spr",
-      "acceptedAnswers": ["3"]
+      "acceptedAnswers": ["3"],
+      "explanation": "<p>Subtract 4 from both sides to get <span class=\"math\">2x = 6</span>, then divide by 2 to get <span class=\"math\">x = 3</span>.</p>"
     },
     {
       "id": "fix-rw-mcq-e-1",
@@ -49,7 +51,8 @@
       "prompt": "<p>According to the text, what is true about the Pacific Ocean?</p>",
       "type": "mcq",
       "choices": ["<p>It is the smallest ocean.</p>", "<p>It is the deepest ocean.</p>", "<p>It is only in the Northern Hemisphere.</p>", "<p>It is bordered only by the Arctic.</p>"],
-      "correctChoice": "B"
+      "correctChoice": "B",
+      "explanation": "<p>The text describes the Pacific Ocean as \"the largest and deepest of Earth's oceanic divisions,\" directly supporting choice B.</p>"
     },
     {
       "id": "fix-rw-mcq-m-1",
@@ -62,7 +65,8 @@
       "prompt": "<p>Which choice completes the text so it conforms to the conventions of Standard English?</p>",
       "type": "mcq",
       "choices": ["<p>are</p>", "<p>were</p>", "<p>is</p>", "<p>have been</p>"],
-      "correctChoice": "C"
+      "correctChoice": "C",
+      "explanation": "<p>The subject is the singular noun \"collection,\" not the plural \"paintings.\" A singular subject takes the singular verb \"is.\"</p>"
     },
     {
       "id": "fix-rw-mcq-h-1",
@@ -75,7 +79,8 @@
       "prompt": "<p>As used in Text 1, what does \"tepid\" most nearly mean?</p>",
       "type": "mcq",
       "choices": ["<p>Hostile.</p>", "<p>Unenthusiastic.</p>", "<p>Confused.</p>", "<p>Overwhelming.</p>"],
-      "correctChoice": "B"
+      "correctChoice": "B",
+      "explanation": "<p>Text 2 paraphrases the same idea as \"insufficiently enthusiastic,\" which matches \"unenthusiastic.\"</p>"
     }
   ]
 }

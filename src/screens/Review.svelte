@@ -42,7 +42,7 @@
       <h2>Per question</h2>
       <table>
         <thead>
-          <tr><th>#</th><th>Flag</th><th>Your</th><th>Correct</th><th>Time</th><th></th></tr>
+          <tr><th></th><th>#</th><th>Flag</th><th>Your</th><th>Correct</th><th>Time</th><th></th></tr>
         </thead>
         <tbody>
           {#each $graded.graded as g, i}
@@ -51,6 +51,7 @@
               class:wrong={!g.isCorrect}
               onclick={() => (expanded = expanded === i ? null : i)}
             >
+              <td class="caret">{expanded === i ? '▾' : '▸'}</td>
               <td>{i + 1}</td>
               <td>{g.state.markedForReview ? '⚑' : ''}</td>
               <td>{g.userAnswerDisplay}</td>
@@ -60,11 +61,17 @@
             </tr>
             {#if expanded === i}
               <tr class="detail">
-                <td colspan="6">
+                <td colspan="7">
                   <QuestionView question={g.question} pq={g.state} onUpdate={() => {}} readOnly />
                   {#if g.question.explanation}
                     <h4>Explanation</h4>
-                    <div class="explain" use:explanationAction={g.question.explanation}></div>
+                    <div
+                      class="explain"
+                      data-testid="explanation"
+                      use:explanationAction={g.question.explanation}
+                    ></div>
+                  {:else}
+                    <p class="no-explain"><em>No explanation available for this question.</em></p>
                   {/if}
                 </td>
               </tr>
@@ -116,4 +123,6 @@
   .breakdown ul { padding-left: 1.25rem; }
   .primary { background: #1a73e8; color: white; border: 0; padding: 0.5rem 1rem; border-radius: 4px; align-self: flex-start; }
   .explain { padding: 0.5rem 0; }
+  .no-explain { color: #888; padding: 0.5rem 0; }
+  .caret { width: 1.5rem; color: #888; user-select: none; }
 </style>
