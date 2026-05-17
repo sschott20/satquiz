@@ -361,16 +361,35 @@ def slice_blocks(q: RawQuestion, start: Optional[Anchor], end: Optional[Anchor])
 # Match a generic "Which X..." or "Based on..." or similar interrogative line that splits
 # the R&W stimulus from the prompt. The list is empirical; we add more as we find cases.
 PROMPT_LEAD_RE = re.compile(
-    r"^(Which choice\b|Based on (?:the text|the texts|the passage)\b|"
-    r"As used in the text\b|According to the text\b|What\b|What does\b|Which\b|"
+    r"^(Which choice\b|Based on (?:the text|the texts|the passage|the (?:table|graph|figure|data))\b|"
+    r"As used in the text\b|According to (?:the text|the table|the graph|the figure|the passage|the data)\b|"
+    r"What\b|What does\b|Which\b|"
+    r"It can (?:most reasonably )?be inferred\b|"
     r"In the text\b|The text\b|The author\b|The (?:main|primary|first|second) (?:purpose|function|idea|claim|argument|reason)\b)",
     re.IGNORECASE,
 )
 
 
+# Interrogative prefixes that may appear MID-PARAGRAPH (when stimulus and prompt were
+# extracted as a single PDF paragraph). Used to split a paragraph on these phrases.
+INTRA_PARA_PROMPT_RE = re.compile(
+    r"(?:^|\s)((?:Which (?:choice|of the following|finding|quotation|statement|sentence|"
+    r"two sentences))\b[^?]*\?|"
+    r"Based on the texts?,?\s+[^?]*\?|"
+    r"Based on the (?:table|graph|figure|data),?\s+[^?]*\?|"
+    r"Based on (?:the )?information (?:in the (?:table|graph|figure|passage|text|data))?,?\s+[^?]*\?|"
+    r"According to the (?:text|table|graph|figure|passage|data),?\s+[^?]*\?|"
+    r"As used in the text,?\s+[^?]*\?|"
+    r"It can (?:most reasonably )?be inferred[^?]*\?|"
+    r"What (?:does|is the main|is the (?:primary|central))[^?]*\?)"
+)
+
+
 def split_stimulus_prompt(body_text: str) -> tuple[str, str]:
     """Heuristic: the LAST paragraph that starts with a known interrogative prefix is the prompt.
-    Everything before it is the stimulus."""
+    Everything before it is the stimulus. Also handles the case where the stimulus and prompt
+    landed in the SAME PDF paragraph (one block, no blank-line separation): split on a
+    "Which choice..." / "Based on the text..." substring."""
     if not body_text:
         return ("", "")
     # Split on double newlines (paragraph boundaries). Single-newline within a paragraph is OK.
@@ -383,12 +402,24 @@ def split_stimulus_prompt(body_text: str) -> tuple[str, str]:
         if PROMPT_LEAD_RE.match(paras[i]):
             prompt_idx = i
             break
-    if prompt_idx is None:
-        # Fall back to: prompt = last paragraph
-        prompt_idx = len(paras) - 1
-    stimulus = "\n\n".join(paras[:prompt_idx])
-    prompt = paras[prompt_idx]
-    return (stimulus, prompt)
+    if prompt_idx is not None:
+        stimulus = "\n\n".join(paras[:prompt_idx])
+        prompt = paras[prompt_idx]
+        return (stimulus, prompt)
+    # No paragraph-prefix match — try splitting the last paragraph on a known mid-para phrase.
+    last = paras[-1]
+    matches = list(INTRA_PARA_PROMPT_RE.finditer(last))
+    if matches:
+        m = matches[-1]
+        prompt = m.group(1).strip()
+        stim_tail = last[: m.start()].rstrip()
+        if stim_tail:
+            stim_paras = paras[:-1] + [stim_tail]
+        else:
+            stim_paras = paras[:-1]
+        return ("\n\n".join(stim_paras), prompt)
+    # Fall back to: prompt = last paragraph, no stimulus
+    return ("", paras[-1])
 
 
 def body_text_from_blocks(blocks: list[Block]) -> str:
@@ -446,11 +477,11 @@ def body_text_from_blocks(blocks: list[Block]) -> str:
     return "\n\n".join(" ".join(p) for p in paragraphs)
 
 
-def build_paired_stimulus_html(blocks: list[Block]) -> tuple[str, list[Block]]:
+def build_paired_stimulus_html(blocks: list[Block]) -> tuple[str, str]:
     """Detect Text 1 / Text 2 paired-passage structure within stimulus blocks.
 
-    Returns (html_string, leftover_blocks). If no Text 1/Text 2 anchors found,
-    returns ("", blocks)."""
+    Returns (stimulus_html, prompt_text). If no Text 1/Text 2 anchors found,
+    returns ("", "")."""
     t1_idx = t2_idx = None
     for i, b in enumerate(blocks):
         s = b.text.strip()
@@ -459,20 +490,36 @@ def build_paired_stimulus_html(blocks: list[Block]) -> tuple[str, list[Block]]:
         elif s == "Text 2" and t2_idx is None:
             t2_idx = i
     if t1_idx is None or t2_idx is None:
-        return ("", blocks)
+        return ("", "")
 
     text1_blocks = blocks[t1_idx + 1 : t2_idx]
-    text2_blocks = blocks[t2_idx + 1 :]
+    text2_after = blocks[t2_idx + 1 :]
+
+    # Within text2_after, separate the passage from the trailing prompt. The prompt is the
+    # last paragraph (in body-text terms) that starts with a known interrogative prefix.
+    t2_body_text = body_text_from_blocks(text2_after)
+    t2_paras = [p.strip() for p in re.split(r"\n{2,}", t2_body_text) if p.strip()]
+    prompt_idx = None
+    for i in range(len(t2_paras) - 1, -1, -1):
+        if PROMPT_LEAD_RE.match(t2_paras[i]):
+            prompt_idx = i
+            break
+    if prompt_idx is None:
+        # Default: assume the last paragraph is the prompt
+        prompt_idx = len(t2_paras) - 1 if t2_paras else -1
+    text2_paras = t2_paras[:prompt_idx] if prompt_idx >= 0 else t2_paras
+    prompt_text = t2_paras[prompt_idx] if prompt_idx >= 0 and prompt_idx < len(t2_paras) else ""
 
     t1_text = body_text_from_blocks(text1_blocks)
-    t2_text = body_text_from_blocks(text2_blocks)
+    t2_text_clean = "\n\n".join(text2_paras)
+
     parts = [
         "<p><strong>Text 1</strong></p>",
         text_to_html(t1_text),
         "<p><strong>Text 2</strong></p>",
-        text_to_html(t2_text),
+        text_to_html(t2_text_clean),
     ]
-    return ("".join(parts), [])
+    return ("".join(parts), prompt_text)
 
 
 def render_figure(doc: pymupdf.Document, q: RawQuestion, anchors: dict[str, Anchor], out_path: pathlib.Path):
@@ -600,23 +647,12 @@ def parse_question(doc: pymupdf.Document, q: RawQuestion, render_figures: bool) 
     body_blocks = slice_blocks(q, q_anchor, body_end_anchor)
 
     # Drop any blocks that ARE the Text 1 / Text 2 lone-anchor markers? We'll handle paired below.
-    paired_html, _ = build_paired_stimulus_html(body_blocks)
+    paired_html, paired_prompt = build_paired_stimulus_html(body_blocks)
 
     if paired_html:
-        # The prompt is whatever comes AFTER the last Text-2 paragraph but BEFORE Answer/CA.
-        # In practice, the prompt is a single block beginning with "Based on the texts," etc.
-        # Heuristic: from body_blocks, take everything after Text 2's last block as the prompt.
-        # Actually: paired_html already absorbed both texts incl. all between. We need to also
-        # capture a separate "prompt" line that may follow Text 2's content.
-        # Simpler approach: re-split using PROMPT_LEAD_RE on the combined body text minus the
-        # Text1/Text2 prefixes.
-        body_text = body_text_from_blocks(body_blocks)
-        # Strip the literal "Text 1\n\n...\n\nText 2\n\n..." prefix is hard. Instead:
-        # locate the last paragraph satisfying interrogative regex; treat that as prompt;
-        # everything before becomes stimulus.
-        stimulus_text, prompt_text = split_stimulus_prompt(body_text)
-        # For paired we override stimulus to use the structured HTML
+        prompt_text = paired_prompt
         stimulus_html = paired_html
+        stimulus_text = ""  # not used in the paired branch
     else:
         body_text = body_text_from_blocks(body_blocks)
         stimulus_text, prompt_text = split_stimulus_prompt(body_text)
@@ -654,14 +690,6 @@ def parse_question(doc: pymupdf.Document, q: RawQuestion, render_figures: bool) 
         explanation_text = body_text_from_blocks(rat_blocks)
         explanation_html = text_to_html(explanation_text)
 
-    # ---- figure (math only). Render the prompt region.
-    figure_url: Optional[str] = None
-    if render_figures and q.section == "math":
-        fig_path = FIG_DIR / f"{q.qid}.png"
-        ok = render_figure(doc, q, anchors, fig_path)
-        if ok:
-            figure_url = f"/figures/{q.qid}.png"
-
     # ---- id (content hash) — must be stable across reruns and across the two PDFs (full
     # vs exclude_active) for the same question. The spec recipe is sha1(section + prompt +
     # choices_joined). For math questions, equations are rendered as vector glyphs / images
@@ -675,6 +703,14 @@ def parse_question(doc: pymupdf.Document, q: RawQuestion, render_figures: bool) 
     choices_joined = "|".join(choices_text)
     hash_input = f"{section_label}|{q.qid}|{prompt_text.strip()}|{choices_joined}"
     qid = hashlib.sha1(hash_input.encode("utf-8")).hexdigest()[:16]
+
+    # ---- figure (math only). Render the question region as PNG, named by our hash id.
+    figure_url: Optional[str] = None
+    if render_figures and q.section == "math":
+        fig_path = FIG_DIR / f"{qid}.png"
+        ok = render_figure(doc, q, anchors, fig_path)
+        if ok:
+            figure_url = f"/figures/{qid}.png"
 
     qobj = Question(
         id=qid,
