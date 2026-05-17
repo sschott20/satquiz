@@ -1,0 +1,14 @@
+node_modules
+dist
+.DS_Store
+*.log
+/source/*.pdf
+playwright-report
+test-results
+.vite
+docs/superpowers/
+pipeline/out/
+pipeline/.venv/
+pipeline/__pycache__/
+pipeline/**/__pycache__/
+pipeline/*.egg-info/
