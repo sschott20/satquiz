@@ -1,0 +1,81 @@
+{
+  "version": "fixture-1",
+  "generatedAt": "2026-05-17T00:00:00.000Z",
+  "questions": [
+    {
+      "id": "fix-math-mcq-e-1",
+      "section": "math",
+      "domain": "Algebra",
+      "skill": "Linear equations in one variable",
+      "difficulty": "E",
+      "isActive": false,
+      "prompt": "<p>If <span class=\"math\">3x + 6 = 18</span>, what is the value of <span class=\"math\">x</span>?</p>",
+      "type": "mcq",
+      "choices": ["<span class=\"math\">2</span>", "<span class=\"math\">3</span>", "<span class=\"math\">4</span>", "<span class=\"math\">6</span>"],
+      "correctChoice": "C",
+      "explanation": "<p>Subtract 6 from both sides to get <span class=\"math\">3x = 12</span>, then divide by 3.</p>"
+    },
+    {
+      "id": "fix-math-mcq-m-1",
+      "section": "math",
+      "domain": "Advanced math",
+      "skill": "Quadratic equations",
+      "difficulty": "M",
+      "isActive": true,
+      "prompt": "<p>What are the solutions to <span class=\"math\">x^2 - 5x + 6 = 0</span>?</p>",
+      "type": "mcq",
+      "choices": ["<span class=\"math\">x = 1, 6</span>", "<span class=\"math\">x = 2, 3</span>", "<span class=\"math\">x = -2, -3</span>", "<span class=\"math\">x = 6</span>"],
+      "correctChoice": "B"
+    },
+    {
+      "id": "fix-math-spr-h-1",
+      "section": "math",
+      "domain": "Algebra",
+      "skill": "Linear equations in two variables",
+      "difficulty": "H",
+      "isActive": false,
+      "prompt": "<p>If <span class=\"math\">2x + 4 = 10</span>, what is the value of <span class=\"math\">x</span>?</p>",
+      "type": "spr",
+      "acceptedAnswers": ["3"]
+    },
+    {
+      "id": "fix-rw-mcq-e-1",
+      "section": "rw",
+      "domain": "Information and Ideas",
+      "skill": "Central ideas and details",
+      "difficulty": "E",
+      "isActive": false,
+      "stimulus": "<p>The Pacific Ocean is the largest and deepest of Earth's oceanic divisions, extending from the Arctic Ocean in the north to the Southern Ocean in the south.</p>",
+      "prompt": "<p>According to the text, what is true about the Pacific Ocean?</p>",
+      "type": "mcq",
+      "choices": ["<p>It is the smallest ocean.</p>", "<p>It is the deepest ocean.</p>", "<p>It is only in the Northern Hemisphere.</p>", "<p>It is bordered only by the Arctic.</p>"],
+      "correctChoice": "B"
+    },
+    {
+      "id": "fix-rw-mcq-m-1",
+      "section": "rw",
+      "domain": "Standard English Conventions",
+      "skill": "Subject-verb agreement",
+      "difficulty": "M",
+      "isActive": true,
+      "stimulus": "<p>The collection of paintings ____ on display next month.</p>",
+      "prompt": "<p>Which choice completes the text so it conforms to the conventions of Standard English?</p>",
+      "type": "mcq",
+      "choices": ["<p>are</p>", "<p>were</p>", "<p>is</p>", "<p>have been</p>"],
+      "correctChoice": "C"
+    },
+    {
+      "id": "fix-rw-mcq-h-1",
+      "section": "rw",
+      "domain": "Craft and Structure",
+      "skill": "Words in context",
+      "difficulty": "H",
+      "isActive": false,
+      "stimulus": "<p><strong>Text 1</strong></p><p>The new policy received <em>tepid</em> support from union leaders.</p><p><strong>Text 2</strong></p><p>Many members of the union felt their representatives had been insufficiently enthusiastic.</p>",
+      "prompt": "<p>As used in Text 1, what does \"tepid\" most nearly mean?</p>",
+      "type": "mcq",
+      "choices": ["<p>Hostile.</p>", "<p>Unenthusiastic.</p>", "<p>Confused.</p>", "<p>Overwhelming.</p>"],
+      "correctChoice": "B"
+    }
+  ]
+}
