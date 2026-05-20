@@ -89,15 +89,19 @@
 
   <div class="topbar">
     <span class="section">{q.section === 'math' ? 'Math' : 'Reading & Writing'}</span>
-    <Timer
-      startedAt={$session.startedAt}
-      totalMs={$session.timeLimitMs ?? 0}
-      hidden={hideTimer}
-      {onExpire}
-    />
-    <button class="link" onclick={() => (hideTimer = !hideTimer)}>
-      {hideTimer ? 'Show' : 'Hide'} timer
-    </button>
+    {#if $session.timeLimitMs != null}
+      <Timer
+        startedAt={$session.startedAt}
+        totalMs={$session.timeLimitMs}
+        hidden={hideTimer}
+        {onExpire}
+      />
+      <button class="link" onclick={() => (hideTimer = !hideTimer)}>
+        {hideTimer ? 'Show' : 'Hide'} timer
+      </button>
+    {:else}
+      <span class="no-timer">No time limit</span>
+    {/if}
     <button class="link" onclick={confirmEnd}>End test</button>
   </div>
 
@@ -157,6 +161,7 @@
     background: white; border-bottom: 1px solid #ddd; }
   .section { font-weight: 600; flex: 1; }
   .link { background: transparent; border: 0; color: #1a73e8; }
+  .no-timer { color: #888; font-style: italic; }
   .qarea { max-width: 60rem; margin: 1rem auto; padding: 1rem; background: white; border-radius: 8px; }
   .qhead { display: flex; justify-content: space-between; margin-bottom: 0.75rem; color: #333; }
   .flag { background: transparent; border: 1px solid #ccc; padding: 0.25rem 0.5rem; border-radius: 4px; }
