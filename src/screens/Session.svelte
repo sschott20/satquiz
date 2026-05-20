@@ -91,7 +91,7 @@
     <span class="section">{q.section === 'math' ? 'Math' : 'Reading & Writing'}</span>
     <Timer
       startedAt={$session.startedAt}
-      totalMs={$session.timeLimitMs}
+      totalMs={$session.timeLimitMs ?? 0}
       hidden={hideTimer}
       {onExpire}
     />

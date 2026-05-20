@@ -34,7 +34,7 @@ export type QuestionBank = {
 export type SetupForm = {
   section: Section;
   count: number;
-  timeLimitMin: number;
+  timeLimitMin: number | null;
   difficulties: Difficulty[];
   excludeActive: boolean;
 };
@@ -42,7 +42,7 @@ export type SetupForm = {
 export const DEFAULT_SETUP: SetupForm = {
   section: 'math',
   count: 10,
-  timeLimitMin: 15,
+  timeLimitMin: null,
   difficulties: ['E', 'M', 'H'],
   excludeActive: true,
 };
@@ -60,7 +60,7 @@ export type SessionState = {
   perQuestion: PerQuestionState[];
   currentIndex: number;
   startedAt: number;
-  timeLimitMs: number;
+  timeLimitMs: number | null;
   endedAt?: number;
 };
 
@@ -80,4 +80,21 @@ export type GradedSession = {
   byDomain: Record<string, { correct: number; total: number }>;
   bySkill: Record<string, { correct: number; total: number }>;
   byDifficulty: Record<Difficulty, { correct: number; total: number }>;
+};
+
+export type PerQuestionRecord = {
+  id: string;
+  firstAnswer: Choice | string | null;
+  firstCorrect: boolean;
+  correctedOnRetry: boolean;
+  timeSpentMs: number;
+  markedForReview: boolean;
+};
+
+export type SessionRecord = {
+  startedAt: number;
+  endedAt: number;
+  setup: SetupForm;
+  perQuestion: PerQuestionRecord[];
+  score: number;
 };

@@ -35,7 +35,7 @@
       })),
       currentIndex: 0,
       startedAt: Date.now(),
-      timeLimitMs: form.timeLimitMin * 60_000,
+      timeLimitMs: (form.timeLimitMin ?? 15) * 60_000,
     };
     session.set(state);
     screen.set('session');
