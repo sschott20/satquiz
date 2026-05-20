@@ -1,7 +1,7 @@
 <script lang="ts">
   import { screen, session, graded } from '../lib/stores';
   import { gradeSession } from '../lib/grade';
-  import { addDone } from '../lib/storage';
+  import { addDone } from '../lib/profile';
   import QuestionView from '../components/QuestionView.svelte';
   import Timer from '../components/Timer.svelte';
   import NavigatorPopup from '../components/NavigatorPopup.svelte';

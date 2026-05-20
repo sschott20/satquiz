@@ -1,6 +1,6 @@
 <script lang="ts">
   import { bank, screen, session } from '../lib/stores';
-  import { loadSettings, saveSettings, loadDone, resetDone } from '../lib/storage';
+  import { loadSettings, saveSettings, loadDone, resetDone } from '../lib/profile';
   import { filterMatching, sampleQuestions } from '../lib/filter';
   import type { Difficulty, SessionState, SetupForm } from '../lib/types';
 
