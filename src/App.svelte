@@ -1,9 +1,11 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { screen, bank } from './lib/stores';
+  import { screen, bank, currentUser } from './lib/stores';
+  import UserGate from './screens/UserGate.svelte';
   import Setup from './screens/Setup.svelte';
   import Session from './screens/Session.svelte';
   import Review from './screens/Review.svelte';
+  import History from './screens/History.svelte';
   import type { QuestionBank } from './lib/types';
 
   let loadError: string | null = $state(null);
@@ -28,12 +30,16 @@
   </main>
 {:else if $bank == null}
   <main class="status"><p>Loading…</p></main>
+{:else if $currentUser == null}
+  <UserGate />
 {:else if $screen === 'setup'}
   <Setup />
 {:else if $screen === 'session'}
   <Session />
-{:else}
+{:else if $screen === 'review'}
   <Review />
+{:else}
+  <History />
 {/if}
 
 <style>
